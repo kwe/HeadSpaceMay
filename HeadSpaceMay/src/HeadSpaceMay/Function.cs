@@ -1,6 +1,7 @@
 ﻿using System.Net;
 using Amazon.Lambda.Core;
 using Amazon.Lambda.APIGatewayEvents;
+using System.Text.Json;
 
 // Assembly attribute to enable the Lambda function's JSON input to be converted into a .NET class.
 [assembly: LambdaSerializer(typeof(Amazon.Lambda.Serialization.SystemTextJson.DefaultLambdaJsonSerializer))]
@@ -26,11 +27,17 @@ public class Functions
   {
     context.Logger.LogInformation("Get Request\n");
 
+    var body = new Dictionary<string, string>
+    {
+      {"message", "hello world"},
+      {"name", "kwe"}
+    };
+
     var response = new APIGatewayProxyResponse
     {
       StatusCode = (int)HttpStatusCode.OK,
-      Body = "Hello AWS Serverless, dotnet 6 version - now with added Github Actions goodness.",
-      Headers = new Dictionary<string, string> { { "Content-Type", "text/plain" } }
+      Body = JsonSerializer.Serialize(body),
+      Headers = new Dictionary<string, string> { { "Content-Type", "app/json" } }
     };
     return response;
   }
