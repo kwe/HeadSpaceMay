@@ -28,4 +28,4 @@ jobs:
       run: dotnet build --no-restore HeadSpaceMay.sln
     - name: Deploy to Lambda
       working-directory: ./HeadSpaceMay/src/HeadSpaceMay
-      run: dotnet lambda deploy-function --region eu-west-2
+      run: dotnet lambda deploy-function --region eu-west-2 -fm HeadSpaceMay
