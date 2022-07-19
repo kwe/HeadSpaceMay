@@ -9,30 +9,30 @@ namespace HeadSpaceMay;
 
 public class Functions
 {
-    /// <summary>
-    /// Default constructor that Lambda will invoke.
-    /// </summary>
-    public Functions()
+  /// <summary>
+  /// Default constructor that Lambda will invoke.
+  /// </summary>
+  public Functions()
+  {
+  }
+
+
+  /// <summary>
+  /// A Lambda function to respond to HTTP Get methods from API Gateway
+  /// </summary>
+  /// <param name="request"></param>
+  /// <returns>The API Gateway response.</returns>
+  public APIGatewayProxyResponse Get(APIGatewayProxyRequest request, ILambdaContext context)
+  {
+    context.Logger.LogInformation("Get Request\n");
+
+    var response = new APIGatewayProxyResponse
     {
-    }
+      StatusCode = (int)HttpStatusCode.OK,
+      Body = "Hello AWS Serverless, dotnet 6 version - now with added Github Actions goodness",
+      Headers = new Dictionary<string, string> { { "Content-Type", "text/plain" } }
+    };
 
-
-    /// <summary>
-    /// A Lambda function to respond to HTTP Get methods from API Gateway
-    /// </summary>
-    /// <param name="request"></param>
-    /// <returns>The API Gateway response.</returns>
-    public APIGatewayProxyResponse Get(APIGatewayProxyRequest request, ILambdaContext context)
-    {
-        context.Logger.LogInformation("Get Request\n");
-
-        var response = new APIGatewayProxyResponse
-        {
-            StatusCode = (int)HttpStatusCode.OK,
-            Body = "Hello AWS Serverless - Headspace May, dotnet 6 version",
-            Headers = new Dictionary<string, string> { { "Content-Type", "text/plain" } }
-        };
-
-        return response;
-    }
+    return response;
+  }
 }
