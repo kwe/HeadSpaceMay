@@ -29,10 +29,9 @@ public class Functions
     var response = new APIGatewayProxyResponse
     {
       StatusCode = (int)HttpStatusCode.OK,
-      Body = "Hello AWS Serverless, dotnet 6 version - now with added Github Actions goodness",
+      Body = "Hello AWS Serverless, dotnet 6 version - now with added Github Actions goodness.",
       Headers = new Dictionary<string, string> { { "Content-Type", "text/plain" } }
     };
-
     return response;
   }
 }
